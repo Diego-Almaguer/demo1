@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.demo1.entity.Profile;
 import com.example.demo1.entity.User;
 import com.example.demo1.services.UserService;
 
@@ -53,9 +54,11 @@ public class UserController {
             if (bindingResult.hasErrors()) {
                 return new ResponseEntity<>("valide los campos", HttpStatus.BAD_REQUEST);
             } else {
-                Date date = new Date();
-                user.setCreated(date);
+
+                user.setCreated(new Date());
                 userService.save(user);
+                Profile profile = new Profile();
+                profile.setUser(user);
                 return new ResponseEntity<>("Create Result", HttpStatus.OK);
             }
 
