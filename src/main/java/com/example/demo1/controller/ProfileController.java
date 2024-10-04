@@ -2,6 +2,8 @@ package com.example.demo1.controller;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +24,8 @@ public class ProfileController {
     @GetMapping()
     public ResponseEntity<?> findAll() {
         try {
-            // TODO Implement Your Logic To Get Data From Service Layer Or Directly From
-            // Repository Layer
-            return new ResponseEntity<>("GetAll Results", HttpStatus.OK);
+            List<Profile> lista = (List<Profile>) profileService.findAll();
+            return new ResponseEntity<>(lista, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
