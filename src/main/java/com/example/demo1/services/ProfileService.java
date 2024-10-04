@@ -1,25 +1,26 @@
 package com.example.demo1.services;
 
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo1.entity.User;
-import com.example.demo1.repository.UserRepository;
-import java.util.*;
+import com.example.demo1.entity.Profile;
+import com.example.demo1.repository.ProfileRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
-public class UserService {
+public class ProfileService {
     @Autowired
-    UserRepository userRepository;
+    ProfileRepository profileRepository;
 
-    public void save(User user) {
+    public void save(Profile profile) {
         try {
-            if (user != null) {
-                this.userRepository.save(user);
+            if (profile != null) {
+                this.profileRepository.save(profile);
             } else {
                 throw new IllegalArgumentException("User object is null");
             }
@@ -31,10 +32,10 @@ public class UserService {
 
     }
 
-    public Optional<User> getById(Integer id) {
+    public Optional<Profile> getById(Integer id) {
         try {
             if (id != null) {
-                return this.userRepository.findById(id);
+                return this.profileRepository.findById(id);
             } else {
                 throw new IllegalArgumentException("User id is null");
             }
@@ -44,9 +45,9 @@ public class UserService {
 
     }
 
-    public Iterable<User> findAll() {
+    public Iterable<Profile> findAll() {
         try {
-            return this.userRepository.findAll();
+            return this.profileRepository.findAll();
 
         } catch (Exception e) {
             throw new RuntimeException("Failed to findAll users : " + e.getMessage(), e);
@@ -54,21 +55,18 @@ public class UserService {
 
     }
 
-    public void update(User user, Integer id) {
+    public void update(Profile profile, Integer id) {
         try {
             if (id != null) {
-                Optional<User> userFind = this.userRepository.findById(id);
+                Optional<Profile> userFind = this.profileRepository.findById(id);
                 if (userFind.isEmpty()) {
                     throw new EntityNotFoundException("User not found with ID: " + id);
                 } else {
-                    User userUpdate = userFind.get();
-
-                    userUpdate.setApellido(user.getApellido());
-                    userUpdate.setEmail(user.getEmail());
-                    userUpdate.setAdmin(user.getAdmin());
-                    userUpdate.setNombre(user.getNombre());
-                    userUpdate.setCreated(user.getCreated());
-                    this.userRepository.save(userUpdate);
+                    Profile userUpdate = userFind.get();
+                    userUpdate.setFoto(profile.getFoto());
+                    userUpdate.setUsername(profile.getUsername());
+                    userUpdate.setPassword(profile.getPassword());
+                    this.profileRepository.save(userUpdate);
                 }
             }
         } catch (Exception e) {
@@ -80,11 +78,11 @@ public class UserService {
     public void delete(Integer id) {
         try {
             if (id != null) {
-                Optional<User> user = this.userRepository.findById(id);
+                Optional<Profile> user = this.profileRepository.findById(id);
                 if (user.isEmpty()) {
                     throw new EntityNotFoundException("User not found with ID: " + id);
                 } else {
-                    this.userRepository.delete(user.get());
+                    this.profileRepository.delete(user.get());
                 }
             }
         } catch (Exception e) {
@@ -93,16 +91,16 @@ public class UserService {
 
     }
 
-    public Optional<User> findByUsername(String nombre) {
+    public Optional<Profile> findByUsername(String username) {
         try {
-            if (nombre == null) {
+            if (username == null) {
                 throw new IllegalArgumentException("User object is null");
 
             } else {
-                List<User> lista = (List<User>) this.findAll();
-                for (User user : lista) {
-                    if (user.getNombre().equals(nombre)) {
-                        return Optional.of(user);
+                List<Profile> lista = (List<Profile>) this.findAll();
+                for (Profile profile : lista) {
+                    if (profile.getUsername().equals(username)) {
+                        return Optional.of(profile);
                     }
                 }
             }
@@ -111,5 +109,4 @@ public class UserService {
         }
         return Optional.empty();
     }
-
 }

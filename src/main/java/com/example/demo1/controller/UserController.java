@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.demo1.entity.Profile;
 import com.example.demo1.entity.User;
+import com.example.demo1.services.ProfileService;
 import com.example.demo1.services.UserService;
 
 import jakarta.validation.Valid;
@@ -21,6 +22,7 @@ public class UserController {
 
     @Autowired
     UserService userService;
+    ProfileService profileService;
 
     @GetMapping()
     public ResponseEntity<?> findAll() {
@@ -59,6 +61,7 @@ public class UserController {
                 userService.save(user);
                 Profile profile = new Profile();
                 profile.setUser(user);
+                profileService.save(profile);
                 return new ResponseEntity<>("Create Result", HttpStatus.OK);
             }
 
@@ -75,9 +78,9 @@ public class UserController {
                 return new ResponseEntity<>(Map.of("response", "El usuario y la contraseña no pueden ser nulos"),
                         HttpStatus.BAD_REQUEST);
             } else {
-                Optional<User> user = userService.findByUsername(username);
-                if (user.get().getPassword().equals(password)) {
-                    return new ResponseEntity<>(Map.of("response", user), HttpStatus.OK);
+                Optional<Profile> profile = profileService.findByUsername(username);
+                if (profile.get().getPassword().equals(password)) {
+                    return new ResponseEntity<>(Map.of("response", profile), HttpStatus.OK);
                 } else {
                     return new ResponseEntity<>(Map.of("response", "Usuario y contraseña incorrectos"),
                             HttpStatus.BAD_REQUEST);

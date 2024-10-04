@@ -33,16 +33,6 @@ public class User implements Serializable {
     @Email
     private String email;
 
-    @Column(name = "username", unique = true)
-    @NotNull(message = "error")
-    @NotBlank(message = "")
-    private String username;
-
-    @Column(name = "password")
-    @NotNull(message = "error")
-    @NotBlank(message = "")
-    private String password;
-
     @Column(name = "rango")
     private String rango;
 

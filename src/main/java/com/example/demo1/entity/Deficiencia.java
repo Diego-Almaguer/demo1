@@ -12,7 +12,7 @@ import lombok.*;
 @Setter
 @ToString
 @Entity
-@Table(name = "problema")
+@Table(name = "deficiencia")
 public class Deficiencia implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "deficiencia_sequence")

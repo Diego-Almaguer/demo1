@@ -1,6 +1,8 @@
 package com.example.demo1.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -20,6 +22,16 @@ public class Profile implements Serializable {
     private Long id;
     @Column(name = "foto", nullable = true)
     private String foto;
+
+    @Column(name = "username", unique = true)
+    @NotNull(message = "error")
+    @NotBlank(message = "")
+    private String username;
+
+    @Column(name = "password")
+    @NotNull(message = "error")
+    @NotBlank(message = "")
+    private String password;
 
     @OneToMany(mappedBy = "profile")
     private List<Deficiencia> listaDeficiencias;
