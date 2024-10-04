@@ -30,4 +30,7 @@ public class Entidad implements Serializable {
 
     @OneToMany(mappedBy = "entidad")
     private List<Deficiencia> listaDeficiencias;
+
+    @OneToMany(mappedBy = "entidad")
+    private List<Multa> listaMultas;
 }

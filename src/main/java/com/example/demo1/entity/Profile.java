@@ -24,6 +24,9 @@ public class Profile implements Serializable {
     @OneToMany(mappedBy = "profile")
     private List<Deficiencia> listaDeficiencias;
 
+    @OneToMany(mappedBy = "profile")
+    private List<Multa> listaMultas;
+
     @OneToOne
     private User user;
 
