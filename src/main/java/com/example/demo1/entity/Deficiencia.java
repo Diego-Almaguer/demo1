@@ -13,10 +13,10 @@ import lombok.*;
 @ToString
 @Entity
 @Table(name = "problema")
-public class Problema implements Serializable {
+public class Deficiencia implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "problema_sequence")
-    @SequenceGenerator(name = "problema_sequence", sequenceName = "problema_sequence", allocationSize = 100)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "deficiencia_sequence")
+    @SequenceGenerator(name = "deficiencia_sequence", sequenceName = "deficiencia_sequence", allocationSize = 100)
     private Integer id;
 
     @Column(name = "nombre")
@@ -29,7 +29,10 @@ public class Problema implements Serializable {
     @NotBlank(message = "")
     private String descripcion;
 
-    // @ManyToOne
-    // private Empresa empresa;
+    @ManyToOne
+    private Profile profile;
+
+    @ManyToOne
+    private Entidad entidad;
 
 }

@@ -14,7 +14,7 @@ import lombok.*;
 @ToString
 @Entity
 @Table(name = "empresa")
-public class Empresa implements Serializable {
+public class Entidad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empresa_sequence")
     @SequenceGenerator(name = "empresa_sequence", sequenceName = "empresa_sequence", allocationSize = 100)
@@ -25,9 +25,9 @@ public class Empresa implements Serializable {
     @NotBlank(message = "")
     private String nombre;
 
-    // @ManyToOne
-    // private Osde osde;
+    @ManyToOne
+    private Osde osde;
 
-    @OneToMany
-    private List<Problema> listaProblemas;
+    @OneToMany(mappedBy = "entidad")
+    private List<Deficiencia> listaDeficiencias;
 }

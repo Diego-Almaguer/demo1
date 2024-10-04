@@ -43,6 +43,9 @@ public class User implements Serializable {
     @NotBlank(message = "")
     private String password;
 
+    @Column(name = "rango")
+    private String rango;
+
     @Column(name = "created")
     @Temporal(TemporalType.DATE)
 

@@ -2,6 +2,8 @@ package com.example.demo1.entity;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+
 import lombok.*;
 
 @AllArgsConstructor
@@ -18,6 +20,9 @@ public class Profile implements Serializable {
     private Long id;
     @Column(name = "foto", nullable = true)
     private String foto;
+
+    @OneToMany(mappedBy = "profile")
+    private List<Deficiencia> listaDeficiencias;
 
     @OneToOne
     private User user;

@@ -25,10 +25,10 @@ public class Osde implements Serializable {
     @NotBlank(message = "")
     private String nombre;
 
-    // @ManyToOne
-    // private Ministerio ministerio;
+    @ManyToOne
+    private Ministerio ministerio;
 
-    @OneToMany
-    private List<Empresa> listaEmpresas;
+    @OneToMany(mappedBy = "osde")
+    private List<Entidad> listaEntidades;
 
 }

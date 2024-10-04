@@ -25,7 +25,7 @@ public class Ministerio implements Serializable {
     @NotBlank(message = "")
     private String nombre;
 
-    @OneToMany
+    @OneToMany(mappedBy = "ministerio")
     private List<Osde> listaOsdes;
 
 }
