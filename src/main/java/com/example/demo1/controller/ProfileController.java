@@ -47,9 +47,9 @@ public class ProfileController {
     }
 
     @PostMapping("create")
-    public ResponseEntity<?> create(@RequestParam("foto") String foto, @RequestParam("userId") Integer userId) {
+    public ResponseEntity<?> create(@RequestParam("foto") String foto, @RequestParam("id") Integer id) {
         try {
-            Optional<User> user = userService.getById(userId);
+            Optional<User> user = userService.getById(id);
             if (user.isPresent()) {
                 Profile profile = new Profile();
                 profile.setUser(user.get());
