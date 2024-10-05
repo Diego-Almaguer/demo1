@@ -61,7 +61,7 @@ public class UserController {
                 user.setCreated(new Date());
                 userService.save(user);
 
-                return new ResponseEntity<>("result", HttpStatus.OK);
+                return new ResponseEntity<>(user, HttpStatus.OK);
             }
 
         } catch (Exception e) {

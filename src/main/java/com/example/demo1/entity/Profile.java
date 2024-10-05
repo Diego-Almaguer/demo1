@@ -19,7 +19,8 @@ public class Profile implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "profile_sequence")
     @SequenceGenerator(name = "profile_sequence", sequenceName = "profile_sequence", allocationSize = 100)
-    private Long id;
+    private Integer id;
+
     @Column(name = "foto")
     private String foto;
 

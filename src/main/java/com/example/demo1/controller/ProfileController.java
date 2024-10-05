@@ -47,13 +47,11 @@ public class ProfileController {
     }
 
     @PostMapping("create")
-    public ResponseEntity<?> create(@RequestParam("foto") String foto, @RequestParam("id") Integer id) {
+    public ResponseEntity<?> create(@RequestBody Profile profile) {
         try {
-            Optional<User> user = userService.getById(id);
-            if (user.isPresent()) {
-                Profile profile = new Profile();
-                profile.setUser(user.get());
-                profile.setFoto(foto);
+
+            if (profile != null) {
+
                 profileService.save(profile);
                 return new ResponseEntity<>(profile, HttpStatus.CREATED);
             } else {
