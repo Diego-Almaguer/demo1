@@ -20,18 +20,8 @@ public class Profile implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "profile_sequence")
     @SequenceGenerator(name = "profile_sequence", sequenceName = "profile_sequence", allocationSize = 100)
     private Long id;
-    @Column(name = "foto", nullable = true)
+    @Column(name = "foto")
     private String foto;
-
-    @Column(name = "username", unique = true)
-    @NotNull(message = "error")
-    @NotBlank(message = "")
-    private String username;
-
-    @Column(name = "password")
-    @NotNull(message = "error")
-    @NotBlank(message = "")
-    private String password;
 
     @OneToMany(mappedBy = "profile")
     private List<Deficiencia> listaDeficiencias;

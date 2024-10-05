@@ -58,15 +58,14 @@ public class ProfileService {
     public void update(Profile profile, Integer id) {
         try {
             if (id != null) {
-                Optional<Profile> userFind = this.profileRepository.findById(id);
-                if (userFind.isEmpty()) {
+                Optional<Profile> profileFind = this.profileRepository.findById(id);
+                if (profileFind.isEmpty()) {
                     throw new EntityNotFoundException("User not found with ID: " + id);
                 } else {
-                    Profile userUpdate = userFind.get();
-                    userUpdate.setFoto(profile.getFoto());
-                    userUpdate.setUsername(profile.getUsername());
-                    userUpdate.setPassword(profile.getPassword());
-                    this.profileRepository.save(userUpdate);
+                    Profile profileUpdate = profileFind.get();
+                    profileUpdate.setFoto(profile.getFoto());
+
+                    this.profileRepository.save(profileUpdate);
                 }
             }
         } catch (Exception e) {
@@ -91,22 +90,4 @@ public class ProfileService {
 
     }
 
-    public Optional<Profile> findByUsername(String username) {
-        try {
-            if (username == null) {
-                throw new IllegalArgumentException("User object is null");
-
-            } else {
-                List<Profile> lista = (List<Profile>) this.findAll();
-                for (Profile profile : lista) {
-                    if (profile.getUsername().equals(username)) {
-                        return Optional.of(profile);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            throw new EntityNotFoundException("User not found");
-        }
-        return Optional.empty();
-    }
 }

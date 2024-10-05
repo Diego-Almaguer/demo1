@@ -3,7 +3,9 @@ package com.example.demo1.controller;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.example.demo1.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.BindingResult;
 import com.example.demo1.entity.Profile;
 import com.example.demo1.services.ProfileService;
+import com.example.demo1.services.UserService;
 
 import jakarta.validation.Valid;
 
@@ -20,6 +23,7 @@ public class ProfileController {
 
     @Autowired
     ProfileService profileService;
+    UserService userService;
 
     @GetMapping()
     public ResponseEntity<?> findAll() {
@@ -43,15 +47,21 @@ public class ProfileController {
     }
 
     @PostMapping()
-    public ResponseEntity<?> create(@Valid @RequestBody Profile profile, @PathVariable Integer id,
+    public ResponseEntity<?> create(@RequestParam("foto") String foto, @RequestParam("userId") Integer userId,
             BindingResult bindingResult) {
         try {
-            if (bindingResult.hasErrors()) {
-                return new ResponseEntity<>("Valide los campos", HttpStatus.BAD_REQUEST);
-            } else {
-                profileService.update(profile, id);
-                return new ResponseEntity<>("Create Result", HttpStatus.OK);
-            }
+            /*
+             * if (bindingResult.hasErrors()) {
+             * return new ResponseEntity<>("Valide los campos", HttpStatus.BAD_REQUEST);
+             * } else {
+             */
+            Optional<User> user = userService.getById(userId);
+            Profile profile = new Profile();
+            profile.setUser(user.get());
+            profile.setFoto(foto);
+            profileService.save(profile);
+            return new ResponseEntity<>("Create Result", HttpStatus.OK);
+            // }
 
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

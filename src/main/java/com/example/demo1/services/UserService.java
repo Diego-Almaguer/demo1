@@ -62,7 +62,8 @@ public class UserService {
                     throw new EntityNotFoundException("User not found with ID: " + id);
                 } else {
                     User userUpdate = userFind.get();
-
+                    userUpdate.setUsername(user.getUsername());
+                    userUpdate.setPassword(user.getPassword());
                     userUpdate.setApellido(user.getApellido());
                     userUpdate.setEmail(user.getEmail());
                     userUpdate.setAdmin(user.getAdmin());
@@ -93,15 +94,15 @@ public class UserService {
 
     }
 
-    public Optional<User> findByUsername(String nombre) {
+    public Optional<User> findByUsername(String username) {
         try {
-            if (nombre == null) {
+            if (username == null) {
                 throw new IllegalArgumentException("User object is null");
 
             } else {
                 List<User> lista = (List<User>) this.findAll();
                 for (User user : lista) {
-                    if (user.getNombre().equals(nombre)) {
+                    if (user.getUsername().equals(username)) {
                         return Optional.of(user);
                     }
                 }

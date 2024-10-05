@@ -51,7 +51,8 @@ public class UserController {
      */
 
     @PostMapping("create")
-    public ResponseEntity<?> create(@Valid @RequestBody User user, BindingResult bindingResult) {
+    public ResponseEntity<?> create(@Valid @RequestBody User user,
+            BindingResult bindingResult) {
         try {
             if (bindingResult.hasErrors()) {
                 return new ResponseEntity<>("valide los campos", HttpStatus.BAD_REQUEST);
@@ -59,10 +60,8 @@ public class UserController {
 
                 user.setCreated(new Date());
                 userService.save(user);
-                Profile profile = new Profile();
-                profile.setUser(user);
-                profileService.save(profile);
-                return new ResponseEntity<>("Create Result", HttpStatus.OK);
+
+                return new ResponseEntity<>("result", HttpStatus.OK);
             }
 
         } catch (Exception e) {
@@ -78,9 +77,9 @@ public class UserController {
                 return new ResponseEntity<>(Map.of("response", "El usuario y la contraseña no pueden ser nulos"),
                         HttpStatus.BAD_REQUEST);
             } else {
-                Optional<Profile> profile = profileService.findByUsername(username);
-                if (profile.get().getPassword().equals(password)) {
-                    return new ResponseEntity<>(Map.of("response", profile), HttpStatus.OK);
+                Optional<User> user = userService.findByUsername(username);
+                if (user.get().getPassword().equals(password)) {
+                    return new ResponseEntity<>(Map.of("response", user), HttpStatus.OK);
                 } else {
                     return new ResponseEntity<>(Map.of("response", "Usuario y contraseña incorrectos"),
                             HttpStatus.BAD_REQUEST);
