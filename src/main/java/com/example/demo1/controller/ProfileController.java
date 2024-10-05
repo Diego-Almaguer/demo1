@@ -46,23 +46,19 @@ public class ProfileController {
         }
     }
 
-    @PostMapping()
-    public ResponseEntity<?> create(@RequestParam("foto") String foto, @RequestParam("userId") Integer userId,
-            BindingResult bindingResult) {
+    @PostMapping("create")
+    public ResponseEntity<?> create(@RequestParam("foto") String foto, @RequestParam("userId") Integer userId) {
         try {
-            /*
-             * if (bindingResult.hasErrors()) {
-             * return new ResponseEntity<>("Valide los campos", HttpStatus.BAD_REQUEST);
-             * } else {
-             */
             Optional<User> user = userService.getById(userId);
-            Profile profile = new Profile();
-            profile.setUser(user.get());
-            profile.setFoto(foto);
-            profileService.save(profile);
-            return new ResponseEntity<>("Create Result", HttpStatus.OK);
-            // }
-
+            if (user.isPresent()) {
+                Profile profile = new Profile();
+                profile.setUser(user.get());
+                profile.setFoto(foto);
+                profileService.save(profile);
+                return new ResponseEntity<>(profile, HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
+            }
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
