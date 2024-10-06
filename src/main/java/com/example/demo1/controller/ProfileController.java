@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.demo1.entity.User;
+
+import org.apache.coyote.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,8 +40,11 @@ public class ProfileController {
     @GetMapping("/{id}")
     public ResponseEntity<?> find(@PathVariable Integer id) {
         try {
-            // TODO Implement Your Logic To Get Data From Service Layer Or Directly From
-            // Repository Layer
+            if (id != null) {
+                profileService.getById(id);
+                return new ResponseEntity<>("GetOne Result", HttpStatus.OK);
+
+            }
             return new ResponseEntity<>("GetOne Result", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -62,12 +67,16 @@ public class ProfileController {
         }
     }
 
-    @PutMapping()
-    public ResponseEntity<?> update(@RequestBody Profile profile) {
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@RequestBody Profile profile, @PathVariable Integer id) {
         try {
-            // TODO Implement Your Logic To Update Data And Return Result Through
-            // ResponseEntity
-            return new ResponseEntity<>("Update Result", HttpStatus.OK);
+            if (profile != null) {
+                profileService.update(profile, id);
+                return new ResponseEntity<>("Update Result", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("No hay datos para editar", HttpStatus.BAD_REQUEST);
+            }
+
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -76,9 +85,11 @@ public class ProfileController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         try {
-            // TODO Implement Your Logic To Destroy Data And Return Result Through
-            // ResponseEntity
-            return new ResponseEntity<>("Destroy Result", HttpStatus.OK);
+            if (id != null) {
+                profileService.delete(id);
+                return new ResponseEntity<>("Destroy Result", HttpStatus.OK);
+            }
+            return new ResponseEntity<>("Not found Id", HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -1,10 +1,13 @@
 package com.example.demo1.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+//import jakarta.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.List;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import lombok.*;
 
@@ -24,13 +27,8 @@ public class Profile implements Serializable {
     @Column(name = "foto")
     private String foto;
 
-    @OneToMany(mappedBy = "profile")
-    private List<Deficiencia> listaDeficiencias;
-
-    @OneToMany(mappedBy = "profile")
-    private List<Multa> listaMultas;
-
     @OneToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
 }

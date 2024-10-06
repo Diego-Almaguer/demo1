@@ -1,5 +1,6 @@
 package com.example.demo1.entity;
 
+import java.util.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -19,20 +20,20 @@ public class Multa implements Serializable {
     @SequenceGenerator(name = "multa_sequence", sequenceName = "multa_sequence", allocationSize = 100)
     private Long id;
 
-    @Column(name = "nombre")
-    @NotNull(message = "error")
-    @NotBlank(message = "")
-    private String nombre;
+    @Column(name = "precio")
+    private double precio;
 
     @Column(name = "descripcion")
     @NotNull(message = "error")
-    @NotBlank(message = "")
     private String descripcion;
+
+    @Column(name = "fecha")
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
 
     @ManyToOne
     private Entidad entidad;
 
     @ManyToOne
-    private Profile profile;
-
+    private Inspector inspector;
 }

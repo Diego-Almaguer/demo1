@@ -20,12 +20,12 @@ public class Ministerio implements Serializable {
     @SequenceGenerator(name = "ministerio_sequence", sequenceName = "ministerio_sequence", allocationSize = 100)
     private Integer id;
 
-    @Column(name = "nombre")
-    @NotNull(message = "error")
-    @NotBlank(message = "")
+    @Column(name = "nombre", unique = true)
+    @NotNull(message = "El nombre no puede ser nulo")
+
     private String nombre;
 
-    @OneToMany(mappedBy = "ministerio")
+    @OneToMany(mappedBy = "ministerio", cascade = CascadeType.ALL)
     private List<Osde> listaOsdes;
 
 }

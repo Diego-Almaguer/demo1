@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo1.entity.Profile;
+import com.example.demo1.entity.ProfileContainer;
 import com.example.demo1.entity.User;
 import com.example.demo1.services.ProfileService;
 import com.example.demo1.services.UserService;
@@ -22,6 +23,7 @@ public class UserController {
 
     @Autowired
     UserService userService;
+    @Autowired
     ProfileService profileService;
 
     @GetMapping()
@@ -51,17 +53,19 @@ public class UserController {
      */
 
     @PostMapping("create")
-    public ResponseEntity<?> create(@Valid @RequestBody User user,
+    public ResponseEntity<?> create(@Valid @RequestBody ProfileContainer profileContainer,
             BindingResult bindingResult) {
         try {
             if (bindingResult.hasErrors()) {
                 return new ResponseEntity<>("valide los campos", HttpStatus.BAD_REQUEST);
             } else {
-
+                User user = profileContainer.getUser();
+                Profile profile = profileContainer.getProfile();
                 user.setCreated(new Date());
                 userService.save(user);
-
-                return new ResponseEntity<>(user, HttpStatus.OK);
+                profile.setUser(user);
+                profileService.save(profile);
+                return new ResponseEntity<>(profile, HttpStatus.OK);
             }
 
         } catch (Exception e) {

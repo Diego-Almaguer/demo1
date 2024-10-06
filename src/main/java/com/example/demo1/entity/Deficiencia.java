@@ -2,7 +2,7 @@ package com.example.demo1.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-
+import java.util.*;
 import java.io.Serializable;
 import lombok.*;
 
@@ -21,18 +21,20 @@ public class Deficiencia implements Serializable {
 
     @Column(name = "nombre")
     @NotNull(message = "error")
-    @NotBlank(message = "")
     private String nombre;
 
     @Column(name = "descripcion")
     @NotNull(message = "error")
-    @NotBlank(message = "")
     private String descripcion;
 
-    @ManyToOne
-    private Profile profile;
+    @Column(name = "fecha")
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
 
     @ManyToOne
     private Entidad entidad;
+
+    @ManyToOne
+    private Inspector inspector;
 
 }

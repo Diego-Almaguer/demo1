@@ -17,6 +17,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
     @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 100)
+
     private Integer id;
 
     @Column(name = "nombre")
@@ -53,8 +54,7 @@ public class User implements Serializable {
 
     @Column(name = "admin")
 
-    @NotNull(message = "error")
-    private boolean admin;
+    private boolean admin = false;
 
     public boolean getAdmin() {
         return this.admin;

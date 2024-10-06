@@ -1,6 +1,10 @@
 package com.example.demo1.entity;
 
 import java.util.*;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -22,15 +26,18 @@ public class Entidad implements Serializable {
 
     @Column(name = "nombre")
     @NotNull(message = "error")
-    @NotBlank(message = "")
     private String nombre;
+
+    @OneToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Municipio municipio;
 
     @ManyToOne
     private Osde osde;
 
-    @OneToMany(mappedBy = "entidad")
+    @OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
     private List<Deficiencia> listaDeficiencias;
 
-    @OneToMany(mappedBy = "entidad")
+    @OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
     private List<Multa> listaMultas;
 }

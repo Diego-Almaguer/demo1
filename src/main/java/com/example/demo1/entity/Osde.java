@@ -21,14 +21,14 @@ public class Osde implements Serializable {
     private Integer id;
 
     @Column(name = "nombre")
-    @NotNull(message = "error")
-    @NotBlank(message = "")
+    @NotNull(message = "El nombre no puede ser nulo")
+
     private String nombre;
 
     @ManyToOne
     private Ministerio ministerio;
 
-    @OneToMany(mappedBy = "osde")
+    @OneToMany(mappedBy = "osde", cascade = CascadeType.ALL)
     private List<Entidad> listaEntidades;
 
 }
