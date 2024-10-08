@@ -32,7 +32,7 @@ public class Serviceimpl implements ServiceInter {
         }
         List<Ministerio> lista = ministerioRepository.findAll();
         for (Ministerio ministerio : lista) {
-            if (ministerio.getNombre().equals(nombre)) {
+            if (ministerio.getNombre().equalsIgnoreCase(nombre)) {
                 return Optional.of(ministerio);
             }
         }
@@ -45,7 +45,7 @@ public class Serviceimpl implements ServiceInter {
         }
         List<Osde> lista = osdeRepository.findAll();
         for (Osde osde : lista) {
-            if (osde.getNombre().equals(nombre)) {
+            if (osde.getNombre().equalsIgnoreCase(nombre)) {
                 return Optional.of(osde);
             }
         }
@@ -59,7 +59,7 @@ public class Serviceimpl implements ServiceInter {
         }
         List<Entidad> lista = (List<Entidad>) entidadService.findAll();
         for (Entidad entidad : lista) {
-            if (entidad.getNombre().equals(nombre)) {
+            if (entidad.getNombre().equalsIgnoreCase(nombre)) {
                 return Optional.of(entidad);
             }
         }
@@ -73,7 +73,7 @@ public class Serviceimpl implements ServiceInter {
         }
         List<Municipio> lista = municipioRepository.findAll();
         for (Municipio municipio : lista) {
-            if (municipio.getNombre().equals(nombre)) {
+            if (municipio.getNombre().equalsIgnoreCase(nombre)) {
                 return Optional.of(municipio);
             }
         }

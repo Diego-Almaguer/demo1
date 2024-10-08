@@ -20,7 +20,7 @@ public class Osde implements Serializable {
     @SequenceGenerator(name = "osde_sequence", sequenceName = "osde_sequence", allocationSize = 100)
     private Integer id;
 
-    @Column(name = "nombre")
+    @Column(name = "nombre", unique = true)
     @NotNull(message = "El nombre no puede ser nulo")
 
     private String nombre;

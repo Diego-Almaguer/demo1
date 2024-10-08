@@ -24,7 +24,7 @@ public class Entidad implements Serializable {
     @SequenceGenerator(name = "empresa_sequence", sequenceName = "empresa_sequence", allocationSize = 100)
     private Integer id;
 
-    @Column(name = "nombre")
+    @Column(name = "nombre", unique = true)
     @NotNull(message = "error")
     private String nombre;
 
