@@ -51,22 +51,6 @@ public class ProfileController {
         }
     }
 
-    @PostMapping("create")
-    public ResponseEntity<?> create(@RequestBody Profile profile) {
-        try {
-
-            if (profile != null) {
-
-                profileService.save(profile);
-                return new ResponseEntity<>(profile, HttpStatus.CREATED);
-            } else {
-                return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@RequestBody Profile profile, @PathVariable Integer id) {
         try {

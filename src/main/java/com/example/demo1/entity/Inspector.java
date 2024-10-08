@@ -45,7 +45,7 @@ public class Inspector implements Serializable {
     @NotNull(message = "el campo no puede ser nulo")
     private String rango;
 
-    @Column(name = "rango")
+    @Column(name = "edad")
     @NotEmpty(message = "el campo no puede estar vacio")
     @NotNull(message = "el campo no puede ser nulo")
     @Temporal(TemporalType.DATE)
