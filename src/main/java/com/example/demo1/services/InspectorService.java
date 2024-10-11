@@ -47,6 +47,25 @@ public class InspectorService {
 
     }
 
+    public Optional<Inspector> findByCi(String ci) {
+        try {
+            if (ci == null || ci.length() <= 0) {
+                throw new IllegalArgumentException("User object is null");
+
+            } else {
+                List<Inspector> lista = this.inspectorRepository.findAll();
+                for (Inspector inspector : lista) {
+                    if (inspector.getCi().equals(ci)) {
+                        return Optional.of(inspector);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            throw new EntityNotFoundException("User not found");
+        }
+        return Optional.empty();
+    }
+
     public Iterable<Inspector> findAll() {
         try {
             return this.inspectorRepository.findAll();

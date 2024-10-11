@@ -100,7 +100,7 @@ public class UserService {
                 throw new IllegalArgumentException("User object is null");
 
             } else {
-                List<User> lista = (List<User>) this.findAll();
+                List<User> lista = this.userRepository.findAll();
                 for (User user : lista) {
                     if (user.getUsername().equals(username)) {
                         return Optional.of(user);
