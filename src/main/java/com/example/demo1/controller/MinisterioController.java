@@ -3,6 +3,7 @@ package com.example.demo1.controller;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,10 +27,10 @@ public class MinisterioController {
     MunicipioRepository municipioRepository;
 
     @GetMapping("/ministerio")
-    public ResponseEntity<?> findAll() {
+    public ResponseEntity<Map<String, Object>> findAll() {
         try {
             List<Ministerio> lista = ministerioRepository.findAll();
-            return new ResponseEntity<>(lista, HttpStatus.OK);
+            return new ResponseEntity<>(Map.of("data", lista), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
