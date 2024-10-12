@@ -24,7 +24,8 @@ public class ServiceDefault {
 
     public void crear() {
         List<Ministerio> lista = Arrays.asList(
-                new Ministerio(1, "Ministerio de Finanzas", null)
+                new Ministerio(1, "Ministerio de Finanzas", null),
+                new Ministerio(2, "Ministerio de Comercio", null)
 
         );
         ministerioRepository.saveAll(lista);
