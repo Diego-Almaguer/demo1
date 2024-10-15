@@ -83,7 +83,8 @@ public class UserController {
             } else {
                 Optional<User> user = userService.findByUsername(username);
                 if (user.get().getPassword().equals(password)) {
-                    return new ResponseEntity<>(Map.of("response", user), HttpStatus.OK);
+
+                    return new ResponseEntity<>(Map.of("userId", user.get().getId()), HttpStatus.OK);
                 } else {
                     return new ResponseEntity<>(Map.of("response", "Usuario y contraseña incorrectos"),
                             HttpStatus.BAD_REQUEST);

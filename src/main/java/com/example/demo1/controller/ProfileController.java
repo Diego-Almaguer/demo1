@@ -42,8 +42,8 @@ public class ProfileController {
     public ResponseEntity<Map<String, Object>> find(@PathVariable Integer id) {
         try {
             if (id != null) {
-                Optional<Profile> pOptional = profileService.getById(id);
-                return new ResponseEntity<>(Map.of("data", pOptional.get()), HttpStatus.OK);
+                Optional<Profile> pOptional = profileService.getByUser(id);
+                return new ResponseEntity<>(Map.of("profile", pOptional.get()), HttpStatus.OK);
 
             }
             return new ResponseEntity<>(Map.of("data", "Valide los campos"), HttpStatus.BAD_REQUEST);

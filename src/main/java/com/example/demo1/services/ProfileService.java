@@ -1,7 +1,7 @@
 package com.example.demo1.services;
 
 import java.util.*;
-
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +43,25 @@ public class ProfileService {
             throw new RuntimeException("Failed to find user : " + e.getMessage(), e);
         }
 
+    }
+
+    public Optional<Profile> getByUser(Integer id) {
+        try {
+            if (id == null) {
+                throw new IllegalArgumentException("User id is null");
+
+            } else {
+                List<Profile> lista = this.profileRepository.findAll();
+                for (Profile profile : lista) {
+                    if (profile.getUser().getId() == id) {
+                        return Optional.of(profile);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to find user : " + e.getMessage(), e);
+        }
+        return Optional.empty();
     }
 
     public Iterable<Profile> findAll() {
