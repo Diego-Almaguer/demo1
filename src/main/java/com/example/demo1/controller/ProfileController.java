@@ -3,6 +3,7 @@ package com.example.demo1.controller;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import com.example.demo1.entity.User;
@@ -38,14 +39,14 @@ public class ProfileController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> find(@PathVariable Integer id) {
+    public ResponseEntity<Map<String, Object>> find(@PathVariable Integer id) {
         try {
             if (id != null) {
-                profileService.getById(id);
-                return new ResponseEntity<>("GetOne Result", HttpStatus.OK);
+                Optional<Profile> pOptional = profileService.getById(id);
+                return new ResponseEntity<>(Map.of("data", pOptional.get()), HttpStatus.OK);
 
             }
-            return new ResponseEntity<>("GetOne Result", HttpStatus.OK);
+            return new ResponseEntity<>(Map.of("data", "Valide los campos"), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

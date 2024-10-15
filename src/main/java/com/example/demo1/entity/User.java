@@ -54,7 +54,7 @@ public class User implements Serializable {
 
     @Column(name = "admin")
 
-    private boolean admin = false;
+    private boolean admin;
 
     public boolean getAdmin() {
         return this.admin;

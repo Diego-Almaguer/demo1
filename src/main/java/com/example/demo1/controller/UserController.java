@@ -53,11 +53,11 @@ public class UserController {
      */
 
     @PostMapping("create")
-    public ResponseEntity<?> create(@Valid @RequestBody ProfileContainer profileContainer,
+    public ResponseEntity<Map<String, Object>> create(@Valid @RequestBody ProfileContainer profileContainer,
             BindingResult bindingResult) {
         try {
             if (bindingResult.hasErrors()) {
-                return new ResponseEntity<>("valide los campos", HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(Map.of("data", "valide los campos"), HttpStatus.BAD_REQUEST);
             } else {
                 User user = profileContainer.getUser();
                 Profile profile = profileContainer.getProfile();
@@ -65,7 +65,7 @@ public class UserController {
                 userService.save(user);
                 profile.setUser(user);
                 profileService.save(profile);
-                return new ResponseEntity<>(profile, HttpStatus.OK);
+                return new ResponseEntity<>(Map.of("profileId", profile.getId()), HttpStatus.OK);
             }
 
         } catch (Exception e) {
