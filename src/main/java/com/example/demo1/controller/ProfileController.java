@@ -39,14 +39,14 @@ public class ProfileController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> find(@PathVariable Integer id) {
+    public ResponseEntity<?> find(@PathVariable Integer id) {
         try {
             if (id != null) {
                 Optional<Profile> pOptional = profileService.getByUser(id);
-                return new ResponseEntity<>(Map.of("profile", pOptional.get()), HttpStatus.OK);
+                return new ResponseEntity<>(pOptional.get(), HttpStatus.OK);
 
             }
-            return new ResponseEntity<>(Map.of("data", "Valide los campos"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Valide los campos", HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
