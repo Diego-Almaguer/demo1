@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo1.entity.Entidad;
 import com.example.demo1.repository.EntidadRepository;
-import com.example.demo1.repository.MinisterioRepository;
+
 import java.util.*;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;

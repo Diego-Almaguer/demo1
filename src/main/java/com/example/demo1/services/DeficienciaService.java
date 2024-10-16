@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo1.entity.Deficiencia;
-import com.example.demo1.entity.Multa;
+
 import com.example.demo1.repository.DeficienciaRepository;
-import com.example.demo1.repository.MultaRepository;
+
 import java.util.*;
 import jakarta.persistence.EntityNotFoundException;
 

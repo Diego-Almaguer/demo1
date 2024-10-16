@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 //import jakarta.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.List;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;

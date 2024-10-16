@@ -1,24 +1,17 @@
 package com.example.demo1.controller;
 
-import lombok.RequiredArgsConstructor;
-
 import java.util.List;
-import java.util.Map;
+
 import java.util.Optional;
 
-import com.example.demo1.entity.User;
-
-import org.apache.coyote.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.validation.BindingResult;
+
 import com.example.demo1.entity.Profile;
 import com.example.demo1.services.ProfileService;
 import com.example.demo1.services.UserService;
-
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/profilecontroller")

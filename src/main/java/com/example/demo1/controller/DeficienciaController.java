@@ -1,7 +1,5 @@
 package com.example.demo1.controller;
 
-import lombok.RequiredArgsConstructor;
-
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.demo1.entity.Deficiencia;
 import com.example.demo1.entity.Inspector;
-import com.example.demo1.repository.DeficienciaRepository;
+
 import com.example.demo1.services.DeficienciaService;
 import com.example.demo1.services.InspectorService;
 

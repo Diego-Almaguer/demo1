@@ -2,7 +2,7 @@ package com.example.demo1.services;
 
 import com.example.demo1.entity.*;
 import com.example.demo1.repository.MinisterioRepository;
-import com.example.demo1.repository.MultaRepository;
+
 import com.example.demo1.repository.MunicipioRepository;
 import com.example.demo1.repository.OsdeRepository;
 
