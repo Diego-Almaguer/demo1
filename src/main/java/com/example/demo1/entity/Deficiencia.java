@@ -3,6 +3,10 @@ package com.example.demo1.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.util.*;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import java.io.Serializable;
 import lombok.*;
 
@@ -31,10 +35,16 @@ public class Deficiencia implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fecha;
 
-    @ManyToOne
+    // @ManyToOne
+    @Column(name = "entidad_id")
+    @JoinColumn(name = "entidad")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Entidad entidad;
 
-    @ManyToOne
+    // @ManyToOne
+    @Column(name = "inspector_id")
+    @JoinColumn(name = "inspector")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Inspector inspector;
 
 }
