@@ -57,9 +57,9 @@ public class Inspector implements Serializable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Integer municipio;
 
-    @OneToMany(mappedBy = "inspector", cascade = CascadeType.ALL)
-    private List<Multa> listaMultas;
+    // @OneToMany(mappedBy = "inspector", cascade = CascadeType.ALL)
+    // private List<Multa> listaMultas;
 
-    @OneToMany(mappedBy = "inspector", cascade = CascadeType.ALL)
-    private List<Deficiencia> listaDeficiencias;
+    // @OneToMany(mappedBy = "inspector", cascade = CascadeType.ALL)
+    // private List<Deficiencia> listaDeficiencias;
 }
