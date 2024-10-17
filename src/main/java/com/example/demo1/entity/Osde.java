@@ -1,6 +1,10 @@
 package com.example.demo1.entity;
 
 import java.util.*;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -25,8 +29,11 @@ public class Osde implements Serializable {
 
     private String nombre;
 
-    @ManyToOne
-    private Ministerio ministerio;
+    // @ManyToOne
+    @Column(name = "ministerio_id")
+    @JoinColumn(name = "ministerio")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Integer ministerio;
 
     @OneToMany(mappedBy = "osde", cascade = CascadeType.ALL)
     private List<Entidad> listaEntidades;

@@ -17,7 +17,7 @@ import lombok.*;
 @Setter
 @ToString
 @Entity
-@Table(name = "empresa")
+@Table(name = "entidad")
 public class Entidad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empresa_sequence")
@@ -28,12 +28,17 @@ public class Entidad implements Serializable {
     @NotNull(message = "error")
     private String nombre;
 
-    @OneToOne
+    // @ManyToOne
+    @Column(name = "municipio_id")
+    @JoinColumn(name = "municipio")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Municipio municipio;
+    private Integer municipio;
 
-    @ManyToOne
-    private Osde osde;
+    // @ManyToOne
+    @Column(name = "osde_id")
+    @JoinColumn(name = "osde")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Integer osde;
 
     @OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
     private List<Deficiencia> listaDeficiencias;

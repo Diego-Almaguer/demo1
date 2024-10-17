@@ -46,14 +46,16 @@ public class Inspector implements Serializable {
     private String rango;
 
     @Column(name = "edad")
-    @NotEmpty(message = "el campo no puede estar vacio")
-    @NotNull(message = "el campo no puede ser nulo")
+    // @NotEmpty(message = "el campo no puede estar vacio")
+    // @NotNull(message = "el campo no puede ser nulo")
     @Temporal(TemporalType.DATE)
     private Date edad;
 
-    @OneToOne
+    // @ManyToOne
+    @Column(name = "municipio_id")
+    @JoinColumn(name = "municipio")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Municipio municipio;
+    private Integer municipio;
 
     @OneToMany(mappedBy = "inspector", cascade = CascadeType.ALL)
     private List<Multa> listaMultas;

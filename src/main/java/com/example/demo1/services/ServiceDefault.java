@@ -28,5 +28,12 @@ public class ServiceDefault {
 
         );
         ministerioRepository.saveAll(lista);
+
+        List<Municipio> listaMunicipios = Arrays.asList(
+                new Municipio(1, "Las Tunas"),
+                new Municipio(2, "Jobabo"),
+                new Municipio(3, "Calixto"));
+
+        municipioRepository.saveAll(listaMunicipios);
     }
 }

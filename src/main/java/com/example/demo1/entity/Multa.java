@@ -1,6 +1,10 @@
 package com.example.demo1.entity;
 
 import java.util.*;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -31,9 +35,15 @@ public class Multa implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fecha;
 
-    @ManyToOne
-    private Entidad entidad;
+    // @ManyToOne
+    @Column(name = "entidad_id")
+    @JoinColumn(name = "entidad")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Integer entidad;
 
-    @ManyToOne
-    private Inspector inspector;
+    // @ManyToOne
+    @Column(name = "inspector_id")
+    @JoinColumn(name = "inspector")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Integer inspector;
 }
