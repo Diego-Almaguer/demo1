@@ -35,7 +35,7 @@ public class Osde implements Serializable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Integer ministerio;
 
-    @OneToMany(mappedBy = "osde", cascade = CascadeType.ALL)
-    private List<Entidad> listaEntidades;
+    // @OneToMany(mappedBy = "osde", cascade = CascadeType.ALL)
+    // private List<Entidad> listaEntidades;
 
 }

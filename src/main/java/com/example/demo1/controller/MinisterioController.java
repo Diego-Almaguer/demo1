@@ -37,8 +37,8 @@ public class MinisterioController {
     @GetMapping("/osde")
     public ResponseEntity<?> findAllOsdes() {
         try {
-            List<Osde> lista = osdeRepository.findAll();
-            return new ResponseEntity<>(lista, HttpStatus.OK);
+            List<Osde> listaOsdes = osdeRepository.findAll();
+            return new ResponseEntity<>(listaOsdes, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

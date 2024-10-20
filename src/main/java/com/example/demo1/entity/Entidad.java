@@ -40,9 +40,9 @@ public class Entidad implements Serializable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Integer osde;
 
-    @OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
-    private List<Deficiencia> listaDeficiencias;
+    // @OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
+    // private List<Deficiencia> listaDeficiencias;
 
-    @OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
-    private List<Multa> listaMultas;
+    // @OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
+    // private List<Multa> listaMultas;
 }

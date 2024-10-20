@@ -29,6 +29,13 @@ public class ServiceDefault {
         );
         ministerioRepository.saveAll(lista);
 
+        List<Osde> listaOsdes = Arrays.asList(
+                new Osde(1, "Osde de Finanzas", 1),
+                new Osde(2, "Osde de Comercio", 2)
+
+        );
+        osdeRepository.saveAll(listaOsdes);
+
         List<Municipio> listaMunicipios = Arrays.asList(
                 new Municipio(1, "Las Tunas"),
                 new Municipio(2, "Jobabo"),

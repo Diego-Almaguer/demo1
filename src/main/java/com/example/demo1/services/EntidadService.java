@@ -64,8 +64,8 @@ public class EntidadService {
                     Entidad entidadUpdate = entidadFind.get();
                     entidadUpdate.setNombre(entidad.getNombre());
                     entidadUpdate.setOsde(entidad.getOsde());
-                    entidadUpdate.setListaDeficiencias(entidad.getListaDeficiencias());
-                    entidadUpdate.setListaMultas(entidad.getListaMultas());
+                    // entidadUpdate.setListaDeficiencias(entidad.getListaDeficiencias());
+                    // entidadUpdate.setListaMultas(entidad.getListaMultas());
                     this.entidadRepository.save(entidadUpdate);
                 }
             }
