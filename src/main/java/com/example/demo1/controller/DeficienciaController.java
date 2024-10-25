@@ -44,15 +44,14 @@ public class DeficienciaController {
         }
     }
 
-    @PostMapping("/{ci}")
-    public ResponseEntity<?> create(@Valid @RequestBody Deficiencia dto, @PathVariable String ci,
+    @PostMapping()
+    public ResponseEntity<?> create(@Valid @RequestBody Deficiencia dto,
             BindingResult bindingResult) {
         try {
             if (bindingResult.hasErrors()) {
                 return new ResponseEntity<>("valide los campos", HttpStatus.BAD_REQUEST);
             }
-            Optional<Inspector> oInspector = inspectorService.findByCi(ci);
-            dto.setInspector(oInspector.get());
+
             deficienciaService.save(dto);
             return new ResponseEntity<>("Create Result", HttpStatus.OK);
         } catch (Exception e) {
@@ -60,16 +59,14 @@ public class DeficienciaController {
         }
     }
 
-    @PutMapping("/{id}/{ci}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> update(@Valid @RequestBody Deficiencia dto, @PathVariable Integer id,
-            @PathVariable String ci,
             BindingResult bindingResult) {
         try {
             if (bindingResult.hasErrors()) {
                 return new ResponseEntity<>("Valide los campos", HttpStatus.BAD_REQUEST);
             }
-            Optional<Inspector> oInspector = inspectorService.findByCi(ci);
-            dto.setInspector(oInspector.get());
+
             deficienciaService.update(dto, id);
             return new ResponseEntity<>("Update Result", HttpStatus.OK);
         } catch (Exception e) {

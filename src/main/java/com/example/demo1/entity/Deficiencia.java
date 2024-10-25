@@ -39,12 +39,12 @@ public class Deficiencia implements Serializable {
     @Column(name = "entidad_id")
     @JoinColumn(name = "entidad")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Entidad entidad;
+    private Integer entidad;
 
     // @ManyToOne
     @Column(name = "inspector_id")
     @JoinColumn(name = "inspector")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Inspector inspector;
+    private Integer inspector;
 
 }

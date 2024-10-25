@@ -67,6 +67,8 @@ public class DeficienciaService {
                     deficUpdate.setNombre(deficiencia.getNombre());
                     deficUpdate.setDescripcion(deficiencia.getDescripcion());
                     deficUpdate.setFecha(deficiencia.getFecha());
+                    deficUpdate.setEntidad(deficiencia.getEntidad());
+                    deficUpdate.setInspector(deficiencia.getInspector());
                     this.deficienciaRepository.save(deficUpdate);
                 }
             }
